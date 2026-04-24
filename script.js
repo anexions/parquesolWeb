@@ -35,3 +35,57 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         });
     });
 });
+
+// Carousel Logic
+document.addEventListener('DOMContentLoaded', () => {
+    const carousels = document.querySelectorAll('.carousel-container');
+
+    carousels.forEach(carousel => {
+        const track = carousel.querySelector('.carousel-track');
+        const prevBtn = carousel.querySelector('.prev-btn');
+        const nextBtn = carousel.querySelector('.next-btn');
+        const items = Array.from(track.children);
+        
+        if (items.length === 0) return;
+
+        let currentIndex = 0;
+
+        const updateCarousel = () => {
+            const itemWidth = items[0].getBoundingClientRect().width;
+            // Add the 30px total horizontal margin (15px left + 15px right) defined in CSS
+            const step = itemWidth + 30; 
+            track.style.transform = `translateX(-${step * currentIndex}px)`;
+        };
+
+        const getMaxIndex = () => {
+            const trackWidth = carousel.querySelector('.carousel-track-wrapper').getBoundingClientRect().width;
+            const itemWidth = items[0].getBoundingClientRect().width + 30;
+            const visibleItems = Math.floor(trackWidth / itemWidth) || 1;
+            return Math.max(0, items.length - visibleItems);
+        };
+
+        nextBtn.addEventListener('click', () => {
+            const maxIndex = getMaxIndex();
+            if (currentIndex < maxIndex) {
+                currentIndex++;
+                updateCarousel();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCarousel();
+            }
+        });
+
+        // Update on resize to maintain correct alignment
+        window.addEventListener('resize', () => {
+            const maxIndex = getMaxIndex();
+            if (currentIndex > maxIndex) {
+                currentIndex = maxIndex;
+            }
+            updateCarousel();
+        });
+    });
+});
