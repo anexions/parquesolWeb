@@ -297,15 +297,22 @@ header.scrolled .hamburger {
 }
 
 .carousel-track-wrapper {
-    overflow: hidden;
     width: 100%;
     padding: 10px 0; /* To prevent box-shadow clipping */
 }
 
 .carousel-track {
     display: flex;
-    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
     width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+}
+
+.carousel-track::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
 }
 
 .carousel-btn {
@@ -350,9 +357,10 @@ header.scrolled .hamburger {
     border-radius: 20px;
     height: 400px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    min-width: 100%;
-    margin: 0 15px;
+    min-width: 80%; /* Takes up 80% of width on mobile to show hint of next */
+    margin: 0 10px;
     box-sizing: border-box;
+    scroll-snap-align: center;
 }
 
 @media (min-width: 768px) {
@@ -616,18 +624,8 @@ footer {
         gap: 30px;
     }
     
-    .prev-btn {
-        left: 5px;
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
-    }
-
-    .next-btn {
-        right: 5px;
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
+    .prev-btn, .next-btn {
+        display: none; /* Hide arrows on mobile */
     }
 
     .services-section, .gallery-section, .location-section {
@@ -638,13 +636,10 @@ footer {
         font-size: 2rem;
     }
 
-    .gallery-item {
-        height: 300px;
-    }
-    
     .carousel-track .gallery-item {
-        min-width: 100%;
-        margin: 0;
+        min-width: 85%; /* Make it slightly smaller so the next image is visible */
+        margin: 0 10px;
+        height: 300px;
     }
 }
 
