@@ -39,6 +39,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const hamburgerIcon = document.querySelector('.hamburger i');
         if (nav.classList.contains('nav-active')) {
             nav.classList.remove('nav-active');
+            hamburger.classList.remove('active');
             hamburgerIcon.classList.remove('fa-times');
             hamburgerIcon.classList.add('fa-bars');
         }
@@ -52,6 +53,7 @@ const hamburgerIcon = document.querySelector('.hamburger i');
 
 hamburger.addEventListener('click', () => {
     nav.classList.toggle('nav-active');
+    hamburger.classList.toggle('active');
     
     // Toggle icon
     if (nav.classList.contains('nav-active')) {

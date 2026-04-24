@@ -151,7 +151,8 @@ header.scrolled .btn-nav {
     transition: var(--transition);
 }
 
-header.scrolled .hamburger {
+header.scrolled .hamburger,
+.hamburger.active {
     color: var(--dark-green);
 }
 
