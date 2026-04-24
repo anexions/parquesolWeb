@@ -33,7 +33,34 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         document.querySelector(this.getAttribute('href')).scrollIntoView({
             behavior: 'smooth'
         });
+        
+        // Close mobile menu if open
+        const nav = document.querySelector('.nav-links');
+        const hamburgerIcon = document.querySelector('.hamburger i');
+        if (nav.classList.contains('nav-active')) {
+            nav.classList.remove('nav-active');
+            hamburgerIcon.classList.remove('fa-times');
+            hamburgerIcon.classList.add('fa-bars');
+        }
     });
+});
+
+// Hamburger Menu Toggle
+const hamburger = document.querySelector('.hamburger');
+const nav = document.querySelector('.nav-links');
+const hamburgerIcon = document.querySelector('.hamburger i');
+
+hamburger.addEventListener('click', () => {
+    nav.classList.toggle('nav-active');
+    
+    // Toggle icon
+    if (nav.classList.contains('nav-active')) {
+        hamburgerIcon.classList.remove('fa-bars');
+        hamburgerIcon.classList.add('fa-times');
+    } else {
+        hamburgerIcon.classList.remove('fa-times');
+        hamburgerIcon.classList.add('fa-bars');
+    }
 });
 
 // Carousel Logic
