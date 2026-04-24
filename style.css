@@ -127,7 +127,6 @@ header.scrolled .nav-links a {
     background: var(--gold);
     color: var(--white);
     border: 1px solid var(--gold);
-    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
 }
 
 header.scrolled .btn-nav {
@@ -141,19 +140,16 @@ header.scrolled .btn-nav {
     color: var(--white);
     border-color: var(--gold-light);
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
 }
 
 .btn-gold {
     background: var(--olive-green);
     color: var(--white);
-    box-shadow: 0 10px 25px rgba(58, 139, 136, 0.25);
 }
 
 .btn-gold:hover {
     background: var(--dark-green);
     transform: translateY(-3px);
-    box-shadow: 0 15px 35px rgba(22, 74, 74, 0.4);
 }
 
 /* Hero Section */
